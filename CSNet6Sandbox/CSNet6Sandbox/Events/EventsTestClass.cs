@@ -16,16 +16,24 @@ public class EventsTestClass
     {
         Delegate[] invocationList = ExampleEvent?.GetInvocationList();
         ParallelQuery<Delegate> parallelQuery = invocationList?.AsParallel();
-        foreach (Delegate @delegate in invocationList)
+        foreach (Delegate @delegate in parallelQuery)
         {
             var args = new ExampleEventArgs(0, DateTime.Now, $"{Thread.CurrentThread.ManagedThreadId}");
             @delegate.DynamicInvoke(this, args);
+        }
+    }
 
-            //new Thread(() =>
-            //{
-            //    var args = new ExampleEventArgs(0, DateTime.Now, $"{Thread.CurrentThread.ManagedThreadId}");
-            //    @delegate.DynamicInvoke(this, args);
-            //}).Start();
+    public void InvokeExampleEventParallelUsingThreads()
+    {
+        /* TODO: Shlomi, test prove me */
+        Delegate[] invocationList = ExampleEvent?.GetInvocationList();
+        foreach (Delegate @delegate in invocationList)
+        {
+            new Thread(() =>
+            {
+                var args = new ExampleEventArgs(0, DateTime.Now, $"{Thread.CurrentThread.ManagedThreadId}");
+                @delegate.DynamicInvoke(this, args);
+            }).Start();
         }
     }
 }
