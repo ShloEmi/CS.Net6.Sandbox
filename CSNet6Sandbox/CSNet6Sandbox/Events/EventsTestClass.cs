@@ -8,9 +8,25 @@ public class EventsTestClass
     protected virtual void OnExampleEvent(ExampleEventArgs e) =>
         ExampleEvent?.Invoke(this, e);
 
-    public void InvokeExampleEvent()
-    {
+
+    public void InvokeExampleEvent() => 
         OnExampleEvent(new ExampleEventArgs(0, DateTime.Now, "x"));
+
+    public void InvokeExampleEventParallel()
+    {
+        Delegate[] invocationList = ExampleEvent?.GetInvocationList();
+        ParallelQuery<Delegate> parallelQuery = invocationList?.AsParallel();
+        foreach (Delegate @delegate in invocationList)
+        {
+            var args = new ExampleEventArgs(0, DateTime.Now, $"{Thread.CurrentThread.ManagedThreadId}");
+            @delegate.DynamicInvoke(this, args);
+
+            //new Thread(() =>
+            //{
+            //    var args = new ExampleEventArgs(0, DateTime.Now, $"{Thread.CurrentThread.ManagedThreadId}");
+            //    @delegate.DynamicInvoke(this, args);
+            //}).Start();
+        }
     }
 }
 
