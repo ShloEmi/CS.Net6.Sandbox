@@ -1,4 +1,4 @@
-using FluentAssert;
+using FluentAssertions;
 using NUnit.Framework;
 using System.Diagnostics;
 
@@ -23,7 +23,7 @@ public class EventsTests
 
 
         var expected = new List<string> { "1", "2" };
-        list.ShouldContainAll(expected);
+        list.Should().Contain(expected);
     }
 
 
@@ -56,7 +56,7 @@ public class EventsTests
 
 
         var expected = new List<string> { "1", "exception"};
-        list.ShouldContainAll(expected);
+        list.Should().Contain(expected);
     }
 
 
