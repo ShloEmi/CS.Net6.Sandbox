@@ -9,6 +9,10 @@ abstract internal class B1
     public virtual string f2() => "B1.f2";
 }
 
+abstract internal class D3 : B1
+{
+}
+
 internal class D1 : B1
 {
     public override string f1() => "D1.f1";
