@@ -1,6 +1,5 @@
 using FluentAssertions;
 using NUnit.Framework;
-using static CSNet6Sandbox.Algorithms.SpiralOrderMatrix.Solution;
 
 namespace CSNet6Sandbox.Algorithms.SpiralOrderMatrix;
 
@@ -32,7 +31,8 @@ class Solution {
 
  */
 
-class Solution {
+class Solution
+{
     public List<int> spiralOrder(List<List<int>> arr)
     {
         return SpiralOrder(arr).ToList();
@@ -41,51 +41,51 @@ class Solution {
 
     public static IEnumerable<int> SpiralOrder(List<List<int>> arr, Direction direction = Direction.right)
     {
-        int T = 0, L = 0, B = Math.Max(arr.Count - 1, 0), R =  Math.Max(arr[0].Count - 1, 0);
+        int T = 0, L = 0, B = arr.Count - 1, R = arr[0].Count - 1;
 
         while (T <= B && L <= R)
         {
             switch (direction)
             {
                 case Direction.right:
-                {
-                    for (int i = L; i <= R; i++)
-                        yield return arr[T][i];
+                    {
+                        for (int i = L; i <= R; i++)
+                            yield return arr[T][i];
 
-                    T++;
-                    direction = Direction.down;
-                }
+                        T++;
+                        direction = Direction.down;
+                    }
                     break;
 
                 case Direction.down:
-                {
-                    for (int i = T; i <= B; i++)
-                        yield return arr[i][R];
+                    {
+                        for (int i = T; i <= B; i++)
+                            yield return arr[i][R];
 
-                    R--;
-                    direction = Direction.left;
-                }
+                        R--;
+                        direction = Direction.left;
+                    }
                     break;
 
                 case Direction.left:
-                {
-                    for (int i = R; i >= L; i--)
-                        yield return arr[B][i];
+                    {
+                        for (int i = R; i >= L; i--)
+                            yield return arr[B][i];
 
-                    B--;
-                    direction = Direction.up;
+                        B--;
+                        direction = Direction.up;
 
-                }
+                    }
                     break;
 
                 case Direction.up:
-                {
-                    for (int i = B; i >= T; i--)
-                        yield return arr[i][L];
+                    {
+                        for (int i = B; i >= T; i--)
+                            yield return arr[i][L];
 
-                    L++;
-                    direction = Direction.right;
-                }
+                        L++;
+                        direction = Direction.right;
+                    }
                     break;
 
                 default:
@@ -112,10 +112,10 @@ public class SpiralOrderMatrixTests
         List<int> list = result.ToList();
         list.Should().Equal(new List<int>
         {
-            1, 2, 3, 
-            6, 9, 
-            8, 7, 
-            4, 
+            1, 2, 3,
+            6, 9,
+            8, 7,
+            4,
             5
         });
     }

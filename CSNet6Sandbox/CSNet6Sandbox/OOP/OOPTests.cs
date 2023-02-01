@@ -1,7 +1,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace CSNet6Sandbox.Events;
+namespace CSNet6Sandbox.OOP;
 
 
 public class OOPTests

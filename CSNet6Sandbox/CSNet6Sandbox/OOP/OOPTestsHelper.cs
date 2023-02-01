@@ -1,4 +1,4 @@
-namespace CSNet6Sandbox.Events;
+namespace CSNet6Sandbox.OOP;
 
 abstract internal class B1
 {
