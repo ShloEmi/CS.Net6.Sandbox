@@ -1,9 +1,11 @@
 @startuml
 title Servlet Container
 
+' CR remarks..  1
 (*) --> "ClickServlet.handleRequest()"
 --> "new Page"
 
+' CR remarks..  2
 if "Page.onSecurityCheck" then
   ->[true] "Page.onInit()"
 
