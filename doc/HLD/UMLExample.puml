@@ -6,7 +6,7 @@ title Servlet Container
 --> "new Page"
 
 ' CR remarks..  2
-if "Page.onSecurityCheck" then
+if "Page.onSecurityCheck qwe qwe " then
   ->[true] "Page.onInit()"
 
   if "isForward?" then
